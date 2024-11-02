@@ -1,18 +1,45 @@
-import { Image, StyleSheet, Platform, Text, View } from 'react-native';
-import "../global.css";
+import { View, Text, ImageBackground } from "react-native";
+import React from "react";
+import { LinearGradient } from "expo-linear-gradient";
+import "../global.css"
+import {StatusBar} from 'expo-status-bar' 
 
-export default function HomeScreen() {
+import beachImage from "@/assets/meditation-images/beach.webp";
+import { SafeAreaView } from "react-native-safe-area-context";
+import CustomButton from "@/components/CustomButton";
+
+const App = () => {
   return (
-    <View className="flex-1 justify-center items-center text-sky-400">
-      <Text>Hello World</Text>
+    <View className="flex-1">
+      <ImageBackground
+        source={beachImage}
+        resizeMode="cover"
+        className="flex-1"
+      >
+        <LinearGradient
+          className="flex-1"
+          colors={["rgba(0,0,0,0.4)", "rgba(0,0,0,0.8)"]}
+        >
+          <SafeAreaView className="flex-1 mx-1 my-8 justify-between">
+            <View>
+            <Text className="text-center text-white font-bold text-4xl">
+              Simple Meditation
+            </Text>
+            <Text className="text-center text-white text-regular text-2xl mt-3">
+              Simplifying Meditation for Everyone
+            </Text>
+            </View>
+
+            <View>
+              <CustomButton onPress={() => console.log("Tap")} title="Get Started"/>
+            </View>
+
+            <StatusBar style="light" />
+          </SafeAreaView>
+        </LinearGradient>
+      </ImageBackground>
     </View>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container:{
-    flex: 1,
-    justifyContent:"center",
-    alignItems: "center"
-  }
-});
+export default App;
